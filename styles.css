@@ -26,9 +26,16 @@ body {
 }
 
 .profile-img {
-    max-width: 200px;
-    border-radius: 5px;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
     margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.03);
 }
 
 h1, h2, h3 {

@@ -15,8 +15,34 @@ function toggleBlock(id) {
     }
 }
 
+// 照片轮播功能
+let currentPhotoIndex = 0;
+const photos = [
+    'media/profile.jpg',
+    'media/profile/photo1.jpg',
+    'media/profile/photo3.jpg'
+];
+
+// 切换到下一张照片
+function nextPhoto() {
+    const profileImg = document.querySelector('.profile-img');
+    if (!profileImg) return;
+    
+    currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+    profileImg.src = photos[currentPhotoIndex];
+}
+
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
-    // 可以在这里添加其他页面初始化代码
+    // 初始化照片轮播
+    const profileImg = document.querySelector('.profile-img');
+    if (profileImg) {
+        // 每5秒切换一次照片
+        setInterval(nextPhoto, 5000);
+        
+        // 点击照片也可以切换
+        profileImg.addEventListener('click', nextPhoto);
+    }
+    
     console.log('页面已加载完成');
 }); 
