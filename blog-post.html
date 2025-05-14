@@ -99,10 +99,22 @@
     <div class="blog-content">
         <h1>LNNStackVM: 基于栈虚拟机的神经网络实现与性能优化</h1>
         
-        <img src="https://github.com/lizixi-0x2F/LNNStackVM/raw/main/image/BytecodeCompilerArch.png" alt="LNNStackVM项目标志">
+        <img src="https://github.com/lizixi-0x2F/LNNStackVM/raw/main/image/BytecodeCompilerArch.png" alt="字节码编译器架构">
         
         <h2>项目概述</h2>
         <p>很高兴向大家介绍我最近完成的个人项目 <strong>LNNStackVM</strong> - 一个结合了神经网络和虚拟机技术的创新性实现。本项目使用 PyTorch 实现了一个液态时间常数（LTC）神经网络，用于近似函数 <code>sin(x) + 0.5*sin(3x)</code>，并将训练好的模型转换为字节码，在基于栈的虚拟机上高效执行。</p>
+        
+        <h2>系统架构</h2>
+        <p>项目实现了一个完整的工作流程，从神经网络训练到字节码生成再到虚拟机执行：</p>
+        
+        <img src="https://github.com/lizixi-0x2F/LNNStackVM/raw/main/image/DataFlow.png" alt="系统数据流">
+        
+        <p>整个系统包含三个主要组件：</p>
+        <ol>
+            <li><strong>用户接口</strong>：用于启动训练和输入预测数据</li>
+            <li><strong>训练脚本</strong>：生成训练数据，训练模型，并编译模型为字节码</li>
+            <li><strong>虚拟机</strong>：加载字节码和常量池，执行预测</li>
+        </ol>
         
         <h2>最新研究成果</h2>
         <p>项目中的C虚拟机已经进行了一系列性能优化，显著提高了推理速度，同时保持高精度：</p>
@@ -139,25 +151,37 @@
         <table>
             <tr>
                 <th>实现方式</th>
-                <th>优化前</th>
-                <th>优化后</th>
-                <th>性能提升</th>
+                <th>平均运行时间</th>
+                <th>相对性能</th>
             </tr>
             <tr>
-                <td>C VM</td>
-                <td>~337 μs</td>
-                <td>~123 μs</td>
-                <td>2.8倍</td>
+                <td>PyTorch</td>
+                <td>~330 μs/调用</td>
+                <td>1.0x</td>
+            </tr>
+            <tr>
+                <td>C VM（优化前）</td>
+                <td>~337 μs/调用</td>
+                <td>0.98x</td>
+            </tr>
+            <tr>
+                <td>C VM（优化后）</td>
+                <td>~123 μs/调用</td>
+                <td>2.68x</td>
             </tr>
         </table>
         
-        <p>同时，优化后的代码与原始PyTorch模型的预测误差仅为0.000744，确保了在不牺牲精度的前提下获得高性能。</p>
+        <p>同时，优化后的代码与原始PyTorch模型的预测误差仅为0.000744，确保了在不牺牲精度的前提下获得高性能。下图展示了优化后C VM的预测结果与真实函数和PyTorch预测的对比：</p>
+        
+        <img src="https://github.com/lizixi-0x2F/LNNStackVM/raw/main/image/ltc_fit_result_c.png" alt="函数拟合效果对比">
+        
+        <p>从图中可以看出，C VM的预测结果（绿色虚线）与PyTorch预测结果（红色虚线）和真实函数（黑色实线）几乎完全重合，证明了高精度的预测能力。</p>
         
         <h2>技术亮点</h2>
         <ul>
             <li><strong>创新架构</strong>: 将神经网络与栈虚拟机结合，探索了模型部署的新方向</li>
             <li><strong>多种实现</strong>: 包含纯Python实现和C语言高性能实现</li>
-            <li><strong>突出性能</strong>: C语言实现相比标准PyTorch执行速度提升10-100倍</li>
+            <li><strong>突出性能</strong>: C语言实现（优化后）比标准PyTorch执行速度提升2.68倍</li>
         </ul>
         
         <h2>核心功能</h2>
@@ -167,7 +191,7 @@
             <li><strong>多平台虚拟机</strong>: 
                 <ul>
                     <li>Python VM: 纯Python实现（基准版本）</li>
-                    <li>C VM: 高性能C语言实现（提供10-100倍速度提升）</li>
+                    <li>C VM: 高性能C语言实现（提供2.68倍速度提升）</li>
                 </ul>
             </li>
             <li><strong>可视化比较</strong>: 直观展示不同实现方式的预测结果与原始函数的对比</li>
@@ -186,9 +210,9 @@
                 <td>1.0x</td>
             </tr>
             <tr>
-                <td>C VM</td>
-                <td>~5-50 μs/调用</td>
-                <td>10-100x</td>
+                <td>C VM（优化后）</td>
+                <td>~123 μs/调用</td>
+                <td>2.68x</td>
             </tr>
         </table>
         
@@ -203,10 +227,10 @@
         
         <p>C VM的优势包括：</p>
         <ul>
-            <li>极高的执行效率（10-100倍速度提升）</li>
-            <li>极低的内存占用</li>
+            <li>高执行效率（2.68倍速度提升）</li>
+            <li>低内存占用</li>
             <li>跨平台优化支持</li>
-            <li>高精度计算保证</li>
+            <li>高精度计算保证（预测误差仅为0.000744）</li>
         </ul>
         
         <h2>技术要求</h2>
@@ -230,7 +254,7 @@
         <h2>项目意义</h2>
         <p>这个项目不仅展示了神经网络在函数近似方面的应用，还探索了一种轻量级的模型部署方案。通过将模型转换为字节码并在定制的虚拟机上执行，我们可以在保持高性能的同时大幅减少依赖，使模型更容易在资源受限的环境中部署。</p>
         
-        <p>C语言优化的实现提供了一个极其高效的执行环境，速度提升高达100倍，特别适合对性能有严格要求的场景。</p>
+        <p>C语言优化的实现提供了一个高效的执行环境，速度提升2.68倍，特别适合对性能有严格要求的场景。</p>
         
         <h2>未来计划</h2>
         <p>我计划在这个项目的基础上进一步探索几个方向：</p>
