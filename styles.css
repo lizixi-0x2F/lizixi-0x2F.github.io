@@ -145,6 +145,25 @@ ul {
     padding-left: 20px;
 }
 
+.updates-list {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.updates-list li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.updates-list li:before {
+    content: '>>';
+    color: #fd79a8;
+    position: absolute;
+    left: 0;
+}
+
 code {
     background-color: #2d3436;
     color: #00b894;

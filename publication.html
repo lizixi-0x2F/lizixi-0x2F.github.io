@@ -103,6 +103,47 @@
     
     <div class="publication">
         <div class="publication-content">
+            <div class="publication-title">>_ BiLingualSentimentMPS: 中英文情感分析模型</div>
+            <div class="publication-authors"><strong>李籽溪</strong></div>
+            <div class="publication-venue"><em>自然语言处理项目</em>，2024-2025</div>
+            <div class="publication-links">
+                <a href="https://github.com/lizixi-0x2F/BiLingualSentimentMPS">代码</a>
+            </div>
+        </div>
+        <div class="publication-abstract">
+            <strong>摘要：</strong> 该项目使用MacBERT模型（哈工大讯飞联合实验室开发）微调一个同时支持中英文的情感分析模型，能够分析文本并输出唤起度(Arousal)和价效度(Valence)值。项目针对Apple Silicon芯片提供MPS加速支持。
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>主要功能：</strong>
+            <ul>
+                <li><strong>双语支持</strong>：使用单一模型同时支持中英文</li>
+                <li><strong>硬件加速</strong>：支持Apple Silicon芯片的MPS加速</li>
+                <li><strong>情感分析</strong>：输出文本的价效度和唤起度</li>
+                <li><strong>高效训练</strong>：针对资源有限环境的优化训练流程</li>
+                <li><strong>易于部署</strong>：支持转换为CoreML格式在iOS/macOS设备上使用</li>
+            </ul>
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>技术实现：</strong>
+            <ul>
+                <li><strong>模型架构</strong>：基于MacBERT的双语情感分析模型</li>
+                <li><strong>训练数据</strong>：英文EmoBank数据集与中文诗词情感数据集</li>
+                <li><strong>硬件加速</strong>：CUDA (NVIDIA GPU)、MPS (Apple Silicon)、CPU支持</li>
+                <li><strong>优化技术</strong>：梯度累积减少内存占用、批处理大小优化</li>
+                <li><strong>评估指标</strong>：价效度和唤起度的MSE损失、R²相关系数</li>
+            </ul>
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>项目亮点：</strong>
+            <p>项目创新性地结合中英文情感分析能力于单一模型，并针对Apple Silicon芯片进行了专门优化，大幅提升了在Mac设备上的训练和推理速度。通过使用价效度-唤起度二维情感模型，能够更全面地捕捉文本情感的细微差别，而不仅仅是简单的情感极性判断。</p>
+        </div>
+    </div>
+    
+    <div class="publication">
+        <div class="publication-content">
             <div class="publication-title">>_ MindHub: 心灵情绪日记应用</div>
             <div class="publication-authors"><strong>李籽溪</strong></div>
             <div class="publication-venue"><em>心理学 x 人工智能项目</em>，2024</div>
