@@ -20,9 +20,9 @@ function toggleBlock(id) {
 // 照片轮播功能
 let currentPhotoIndex = 0;
 const photos = [
-    'media/profile.jpg',
-    'media/profile/photo1.jpg',
-    'media/profile/photo3.jpg'
+    'media/images/profile1.jpg',
+    'media/images/profile2.jpg',
+    'media/images/profile3.jpg'
 ];
 
 // 切换到下一张照片
