@@ -17,23 +17,8 @@ function toggleBlock(id) {
     }
 }
 
-// 照片轮播功能
-let currentPhotoIndex = 0;
-const photos = [
-    'media/images/profile1.jpg',
-    'media/images/profile2.jpg',
-    'media/images/profile3.jpg'
-];
-
-// 切换到下一张照片
-function nextPhoto() {
-    const profileImg = document.querySelector('.profile-img');
-    if (!profileImg) return;
-    
-    currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
-    profileImg.src = photos[currentPhotoIndex];
-    console.log(`%c[SYSTEM] 切换到照片 ${currentPhotoIndex + 1}/${photos.length}`, 'color: #0984e3');
-}
+// 固定显示单张照片
+const singlePhoto = 'media/images/profile1.jpg';
 
 // 终端打字效果
 function typeEffect(element, text, speed = 50) {
@@ -55,15 +40,11 @@ function typeEffect(element, text, speed = 50) {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('%c[SYSTEM] 初始化个人主页...', 'color: #00b894; font-weight: bold');
     
-    // 初始化照片轮播
+    // 确保个人照片正确显示
     const profileImg = document.querySelector('.profile-img');
     if (profileImg) {
-        // 每5秒切换一次照片
-        setInterval(nextPhoto, 5000);
-        
-        // 点击照片也可以切换
-        profileImg.addEventListener('click', nextPhoto);
-        console.log('%c[SYSTEM] 照片轮播功能已加载', 'color: #0984e3');
+        profileImg.src = singlePhoto;
+        console.log('%c[SYSTEM] 个人照片已加载', 'color: #0984e3');
     }
     
     // 添加打字效果到主标题
