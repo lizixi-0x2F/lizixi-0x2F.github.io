@@ -5,24 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>李籽溪 - 作品与项目</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
     <script src="scripts.js"></script>
     <style>
         .publication {
             margin-bottom: 40px;
             padding-bottom: 30px;
-            border-bottom: 1px solid #eaecef;
+            border-bottom: 1px solid #2c3e50;
         }
         
         .publication:last-child {
             border-bottom: none;
-        }
-        
-        .publication-img {
-            max-width: 250px;
-            float: left;
-            margin-right: 20px;
-            margin-bottom: 10px;
-            border-radius: 5px;
         }
         
         .publication-content {
@@ -33,6 +26,8 @@
             font-size: 1.3em;
             font-weight: bold;
             margin-bottom: 10px;
+            color: #00b894;
+            font-family: 'Fira Code', monospace;
         }
         
         .publication-authors {
@@ -42,20 +37,37 @@
         .publication-venue {
             font-style: italic;
             margin-bottom: 10px;
+            color: #74b9ff;
         }
         
         .publication-links {
             margin-bottom: 15px;
         }
         
+        .publication-links a {
+            color: #0984e3;
+            text-decoration: none;
+            background-color: rgba(9, 132, 227, 0.1);
+            padding: 2px 5px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+        }
+        
+        .publication-links a:hover {
+            background-color: rgba(9, 132, 227, 0.2);
+        }
+        
         .publication-abstract {
             margin-top: 15px;
             clear: both;
+            line-height: 1.6;
         }
         
         .back-link {
             display: inline-block;
             margin-bottom: 30px;
+            font-family: 'Fira Code', monospace;
+            color: #0984e3;
         }
         
         @media (max-width: 600px) {
@@ -65,17 +77,33 @@
                 margin: 0 auto 20px;
             }
         }
+        
+        code {
+            background-color: #2d3436;
+            color: #00b894;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Fira Code', monospace;
+        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">← 返回主页</a>
+    <div class="terminal-header">
+        <div class="terminal-buttons">
+            <span class="terminal-btn red"></span>
+            <span class="terminal-btn yellow"></span>
+            <span class="terminal-btn green"></span>
+        </div>
+        <div class="terminal-title">lizixi@suzhouuniversity:~/projects</div>
+    </div>
     
-    <h1>作品与项目</h1>
+    <a href="index.html" class="back-link">← cd ..</a>
+    
+    <h1>$ ls ./projects</h1>
     
     <div class="publication">
-        <img src="media/projects/mindhub.png" alt="MindHub项目图片" class="publication-img">
         <div class="publication-content">
-            <div class="publication-title">MindHub: 心灵情绪日记应用</div>
+            <div class="publication-title">>_ MindHub: 心灵情绪日记应用</div>
             <div class="publication-authors"><strong>李籽溪</strong></div>
             <div class="publication-venue"><em>心理学 x 人工智能项目</em>，2024</div>
             <div class="publication-links">
@@ -116,9 +144,8 @@
     </div>
     
     <div class="publication">
-        <img src="media/project1.png" alt="LNNStackVM项目图片" class="publication-img">
         <div class="publication-content">
-            <div class="publication-title">LNNStackVM: 基于栈虚拟机的神经网络</div>
+            <div class="publication-title">>_ LNNStackVM: 基于栈虚拟机的神经网络</div>
             <div class="publication-authors"><strong>李籽溪</strong></div>
             <div class="publication-venue"><em>个人项目</em>，2024</div>
             <div class="publication-links">
@@ -152,6 +179,6 @@
         </div>
     </div>
     
-    <a href="index.html" class="back-link">← 返回主页</a>
+    <a href="index.html" class="back-link">← cd ..</a>
 </body>
 </html> 

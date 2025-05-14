@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>李籽溪 (Li Zixi)</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
     <script src="scripts.js"></script>
 </head>
 <body>
+    <div class="terminal-header">
+        <div class="terminal-buttons">
+            <span class="terminal-btn red"></span>
+            <span class="terminal-btn yellow"></span>
+            <span class="terminal-btn green"></span>
+        </div>
+        <div class="terminal-title">lizixi@suzhouuniversity:~</div>
+    </div>
+    
     <div class="container">
         <div class="main-content">
             <h1>李籽溪 (Li Zixi)</h1>
@@ -22,15 +32,14 @@
                 <a href="https://www.kaggle.com/tianlulee">Kaggle</a>
             </div>
             
-            <h2>最新动态</h2>
+            <h2 class="section-title">// 最新动态</h2>
             <!-- 动态内容置空 -->
             
-            <h2>项目经历</h2>
+            <h2 class="section-title">// 项目经历</h2>
             <p>请查看<a href="publication.html">完整项目页面</a>了解更多详情。</p>
             
             <div class="project">
-                <img src="media/project1.png" alt="LNNStackVM项目图片">
-                <div class="project-title">LNNStackVM: 基于栈虚拟机的神经网络</div>
+                <div class="project-title">>_ LNNStackVM: 基于栈虚拟机的神经网络</div>
                 <div class="project-meta"><strong>李籽溪</strong></div>
                 <div class="project-meta"><em>个人项目</em>，2024</div>
                 <div class="project-links">
@@ -41,8 +50,7 @@
             </div>
             
             <div class="project">
-                <img src="media/projects/mindhub.png" alt="MindHub项目图片">
-                <div class="project-title">MindHub: 心灵情绪日记应用</div>
+                <div class="project-title">>_ MindHub: 心灵情绪日记应用</div>
                 <div class="project-meta"><strong>李籽溪</strong></div>
                 <div class="project-meta"><em>心理学 x 人工智能项目</em>，2024</div>
                 <div class="project-links">
@@ -51,7 +59,7 @@
                 <div class="project-abstract"><strong>摘要：</strong> MindHub是一款专注于情感分析和情绪管理的日记应用，帮助用户记录和分析自己的情绪变化。应用通过苹果原生的自然语言处理(NLP)技术，自动分析日记内容中的情感，提供直观的情绪可视化和洞察。系统可识别多种基本情绪及其强度，生成情绪周报，并通过情绪象限图和趋势图展示情绪变化。</div>
             </div>
             
-            <h2>社会活动</h2>
+            <h2 class="section-title">// 社会活动</h2>
             <ul>
                 <li><strong>拓元智能</strong>：算法岗位实习生，2025.5</li>
             </ul>
@@ -60,16 +68,20 @@
         <div class="sidebar">
             <img src="media/profile.jpg" alt="李籽溪照片" class="profile-img">
             
-            <h2>技能</h2>
-            <ul>
+            <h2 class="section-title">// 技能</h2>
+            <ul class="skill-list">
                 <li><strong>编程语言</strong>：Python, C/C++, JavaScript, Swift</li>
                 <li><strong>框架和工具</strong>：PyTorch, TensorFlow, SwiftUI, Git</li>
                 <li><strong>其他</strong>：数据结构与算法, 机器学习, 音乐理论, 情感分析</li>
             </ul>
             
-            <h2>教育经历</h2>
+            <h2 class="section-title">// 教育经历</h2>
             <p><strong>中山大学</strong>，艺术学院，本科生，2024-2028（预计）</p>
         </div>
+    </div>
+    
+    <div class="terminal-footer">
+        <p class="typing-effect">$ echo "欢迎来到我的个人网站 | Welcome to my personal website"</p>
     </div>
 </body>
 </html>
