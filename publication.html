@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李籽溪 - 作品与项目</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+    <style>
+        .publication {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eaecef;
+        }
+        
+        .publication:last-child {
+            border-bottom: none;
+        }
+        
+        .publication-img {
+            max-width: 250px;
+            float: left;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .publication-content {
+            overflow: hidden;
+        }
+        
+        .publication-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .publication-authors {
+            margin-bottom: 5px;
+        }
+        
+        .publication-venue {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .publication-links {
+            margin-bottom: 15px;
+        }
+        
+        .publication-abstract {
+            margin-top: 15px;
+            clear: both;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 600px) {
+            .publication-img {
+                float: none;
+                display: block;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回主页</a>
+    
+    <h1>作品与项目</h1>
+    
+    <div class="publication">
+        <img src="media/projects/mindhub.png" alt="MindHub项目图片" class="publication-img">
+        <div class="publication-content">
+            <div class="publication-title">MindHub: 心灵情绪日记应用</div>
+            <div class="publication-authors"><strong>李籽溪</strong></div>
+            <div class="publication-venue"><em>心理学 x 人工智能项目</em>，2024</div>
+            <div class="publication-links">
+                <a href="https://github.com/lizixi-0x2F/MindHub">代码</a>
+            </div>
+        </div>
+        <div class="publication-abstract">
+            <strong>摘要：</strong> MindHub是一款专注于情感分析和情绪管理的日记应用，帮助用户记录和分析自己的情绪变化。应用通过苹果原生的自然语言处理(NLP)技术，自动分析日记内容中的情感，提供直观的情绪可视化和洞察。
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>主要功能：</strong>
+            <ul>
+                <li><strong>Apple情绪分析</strong>：采用苹果原生NLP框架分析日记内容，准确识别文本中的情绪类型和强度</li>
+                <li><strong>情绪周报</strong>：自动生成每周情绪分析报告，包含情绪摘要、关键日记分析和个性化建议</li>
+                <li><strong>自动情绪推断</strong>：根据分析结果自动推断用户心情，无需手动选择</li>
+                <li><strong>情绪可视化</strong>：包括GitHub风格的日记活跃热图、情绪价效度-唤起度象限散点图和情绪变化趋势图</li>
+                <li><strong>个性化洞察</strong>：根据日记内容提供情感洞察和情绪变化趋势分析</li>
+                <li><strong>标签组织</strong>：支持为日记添加标签，便于分类和查找</li>
+            </ul>
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>技术实现：</strong>
+            <ul>
+                <li><strong>语言和框架</strong>：Swift 5.9, SwiftUI</li>
+                <li><strong>UI组件</strong>：自定义SwiftUI视图，Chart框架绘制图表</li>
+                <li><strong>情感分析</strong>：Apple NaturalLanguage框架进行情绪识别和分析</li>
+                <li><strong>本地存储</strong>：用户数据本地存储，确保隐私安全</li>
+                <li><strong>情绪模型</strong>：采用唤起度-效价二维模型分析情绪</li>
+            </ul>
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>项目亮点：</strong>
+            <p>该项目结合了心理学原理和人工智能技术，在隐私保护的前提下为用户提供了情绪管理工具。特别是情绪象限图的实现，不仅能够显示情绪的正负性，还能展示情绪的激活程度，让用户更全面地了解自己的情绪状态。项目的所有分析都在设备本地完成，确保了用户隐私安全。</p>
+        </div>
+    </div>
+    
+    <div class="publication">
+        <img src="media/project1.png" alt="LNNStackVM项目图片" class="publication-img">
+        <div class="publication-content">
+            <div class="publication-title">LNNStackVM: 基于栈虚拟机的神经网络</div>
+            <div class="publication-authors"><strong>李籽溪</strong>，指导老师：王可泽教授</div>
+            <div class="publication-venue"><em>个人项目</em>，2023</div>
+            <div class="publication-links">
+                <a href="https://github.com/lizixi-0x2F/LNNStackVM">代码</a> | 
+                <a href="https://github.com/lizixi-0x2F/LNNStackVM">演示</a>
+            </div>
+        </div>
+        <div class="publication-abstract">
+            <strong>摘要：</strong> 本项目使用PyTorch实现了一个液态时间常数(LTC)神经网络，用于近似函数<code>sin(x) + 0.5*sin(3x)</code>。训练好的模型被转换为字节码并在基于栈的虚拟机(VM)上执行。项目包括一个用于加速推理的基于C语言的高性能VM，展示了神经网络训练、基于ODE的建模和轻量级VM推理。
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>主要功能：</strong>
+            <ul>
+                <li>使用PyTorch和torchdiffeq训练LTC神经网络</li>
+                <li>将模型转换为基于栈的VM的字节码</li>
+                <li>使用C语言编写的VM加速推理（比Python VM快10-100倍）</li>
+                <li>直观比较PyTorch和C VM预测结果</li>
+                <li>生成const_pool.npz、bytecode.bin和ltc_fit_result_c.png（包含C VM）</li>
+            </ul>
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>技术细节：</strong>
+            <ul>
+                <li><strong>软件要求：</strong> Python 3.8+，C编译器（如gcc）和make用于构建C VM</li>
+                <li><strong>Python依赖：</strong> torch==2.4.1, torchdiffeq==0.2.4, numpy==1.26.4, matplotlib==3.9.2</li>
+                <li><strong>架构：</strong> 项目包含Python VM和字节码编译器架构，C VM遵循类似的结构但用C实现以提高性能</li>
+                <li><strong>性能：</strong> C VM：约5-50微秒/调用，Python VM：约500-1000微秒/调用</li>
+            </ul>
+        </div>
+    </div>
+    
+    <a href="index.html" class="back-link">← 返回主页</a>
+</body>
+</html> 
