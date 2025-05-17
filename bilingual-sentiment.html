@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BiLingualSentimentMPS: 跨语言情感分析的创新实现与优化</title>
+    <title>LTC-NCP-VA: 基于液态时间常数的跨语言情感分析</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
     <script src="scripts.js"></script>
@@ -97,10 +97,10 @@
     <a href="index.html" class="back-link">← cd ~</a>
     
     <div class="blog-content">
-        <h1>BiLingualSentimentMPS: 跨语言情感分析的创新实现与优化</h1>
+        <h1>LTC-NCP-VA: 基于液态时间常数的跨语言情感分析</h1>
         
         <h2>项目概述</h2>
-        <p>很高兴向大家介绍我的个人项目 <strong>BiLingualSentimentMPS</strong> - 一个创新型双语情感分析模型。该项目突破了传统情感分析的语言限制，同时支持中文和英文的情感极性（效价）和情感强度（唤醒度）分析，通过NCP-LTC创新架构提高预测精度，R²分数可达0.6+。</p>
+        <p>很高兴向大家介绍我的个人项目 <strong>BiLingualSentimentMPS</strong> - 一个基于液态时间常数-神经电路策略(LTC-NCP)的情感价效度(VA)分析模型。该项目突破了传统情感分析的语言限制，同时支持中文和英文的情感价值(Valence)和情感唤醒度(Arousal)分析，通过创新架构提高预测精度。</p>
         
         <h2>系统架构</h2>
         <p>项目实现了一个完整的工作流程，从数据预处理、模型训练到情感预测:</p>
@@ -108,90 +108,95 @@
         <p>整个系统包含三个主要组件:</p>
         <ol>
             <li><strong>数据处理模块</strong>：处理中英文混合数据集，进行标准化和分词</li>
-            <li><strong>核心模型</strong>：基于NCP-LTC架构的神经网络</li>
-            <li><strong>预测输出</strong>：提供效价-唤醒度双维度情感分析结果</li>
+            <li><strong>核心模型</strong>：基于LTC-NCP-VA架构的神经网络</li>
+            <li><strong>预测输出</strong>：提供价值-唤醒度双维度情感分析结果</li>
         </ol>
         
         <p>主要模型结构如下:</p>
-        <pre><code>EmotionAnalysisModel
-├── LightweightTextEncoder (文本编码)
-├── InputMapping (输入映射)
-├── NCP_LTC Layer (神经动力学处理)
-│   ├── NCPAttention (神经回路注意力)
-│   └── NCP_LNN (液体神经网络)
-└── OutputLayer (带tanh激活的回归头)</code></pre>
+        <pre><code>LTC-NCP-VA架构
+├── Transformer增强 (4层、4头注意力机制)
+├── 双向RNN结构
+├── 多层次LTC单元 (液态时间常数处理)
+│   ├── 价值(Valence)增强分支
+│   └── 维度自适应机制
+└── 方向感知损失函数</code></pre>
         
         <h2>最新研究成果</h2>
-        <p>模型通过创新的神经回路策略和液体时间常数网络，显著提高了双语情感分析的准确性:</p>
+        <p>模型通过液态时间常数-神经电路策略，显著提高了双语情感分析的准确性:</p>
         
         <ol>
-            <li><strong>双语支持优化</strong>:  
+            <li><strong>情感价效度模型</strong>:  
                 <ul>
-                    <li>中英文混合数据集联合训练</li>
-                    <li>针对不同语言特性的动态时间常数调整</li>
-                    <li>跨语言情感表达的统一映射</li>
+                    <li><strong>价(Valence)</strong>: 表示情感的正负性，从-1(极负面)到+1(极正面)</li>
+                    <li><strong>效(Arousal)</strong>: 表示情感的强度/激活度，从-1(平静)到+1(激烈)</li>
                 </ul>
             </li>
-            <li><strong>效率提升</strong>:  
+            <li><strong>架构优化</strong>:  
                 <ul>
-                    <li>批次内多次迭代训练策略，加速收敛</li>
-                    <li>15%稀疏连接显著减少参数量</li>
-                    <li>Xavier×2初始化确保前几十步就有有效信号传递</li>
+                    <li>Transformer增强: 4层、4头注意力机制，前馈维度512</li>
+                    <li>双向RNN结构: 捕捉双向文本上下文</li>
+                    <li>多层次LTC单元: 改进的液态时间常数处理</li>
                 </ul>
             </li>
         </ol>
         
-        <p>性能对比:</p>
+        <p>情感象限四分法:</p>
         <table>
             <tr>
-                <th>模型</th>
-                <th>中文R²</th>
-                <th>英文R²</th>
-                <th>跨语言一致性</th>
+                <th>情感象限</th>
+                <th>价值(Valence)</th>
+                <th>唤醒度(Arousal)</th>
+                <th>情感示例</th>
             </tr>
             <tr>
-                <td>BERT-Base</td>
-                <td>0.43</td>
-                <td>0.48</td>
-                <td>0.39</td>
+                <td>Q1: 喜悦/兴奋</td>
+                <td>正面(+)</td>
+                <td>高激活(+)</td>
+                <td>兴奋、欣喜</td>
             </tr>
             <tr>
-                <td>RoBERTa</td>
-                <td>0.51</td>
-                <td>0.55</td>
-                <td>0.46</td>
+                <td>Q2: 满足/平静</td>
+                <td>正面(+)</td>
+                <td>低激活(-)</td>
+                <td>满足、平静</td>
             </tr>
             <tr>
-                <td>BiLingualSentimentMPS</td>
-                <td>0.62</td>
-                <td>0.59</td>
-                <td>0.58</td>
+                <td>Q3: 悲伤/抑郁</td>
+                <td>负面(-)</td>
+                <td>低激活(-)</td>
+                <td>悲伤、沮丧</td>
+            </tr>
+            <tr>
+                <td>Q4: 愤怒/焦虑</td>
+                <td>负面(-)</td>
+                <td>高激活(+)</td>
+                <td>愤怒、恐惧</td>
             </tr>
         </table>
         
-        <p>模型在中英文情感分析任务上表现出色，且保持了跨语言的一致性，同时计算资源需求显著低于大型预训练模型。</p>
+        <p>模型在中英文情感分析任务上表现出色，通过架构优化特别改善了满足/平静象限(Q2)的识别能力。</p>
         
         <h2>技术亮点</h2>
         <ul>
-            <li><strong>神经回路策略(NCP)</strong>: 
-                <ul>
-                    <li>15%稀疏连接，模拟生物神经网络结构</li>
-                    <li>使用Xavier×2初始化确保前几十步就有有效信号传递</li>
-                    <li>激励/抑制神经元分离（60%/40%比例）</li>
-                </ul>
-            </li>
-            <li><strong>液体时间常数网络(LTC)</strong>: 
+            <li><strong>液态时间常数网络(LTC)</strong>: 
                 <ul>
                     <li>可学习的时间常数(τ)，适应不同的时间尺度</li>
                     <li>连续时间动力学处理序列信息</li>
                     <li>时间常数正则化防止梯度消失/爆炸</li>
                 </ul>
             </li>
-            <li><strong>混合训练策略</strong>: 
+            <li><strong>神经电路策略(NCP)</strong>: 
                 <ul>
-                    <li>λ权重控制回归损失与生成损失的比例</li>
-                    <li>标签数据归一化到[-1, 1]范围</li>
-                    <li>回归头使用tanh()激活函数确保输出范围</li>
+                    <li>15%稀疏连接，模拟生物神经网络结构</li>
+                    <li>使用Xavier×2初始化确保前几十步就有有效信号传递</li>
+                    <li>激励/抑制神经元分离（60%/40%比例）</li>
+                </ul>
+            </li>
+            <li><strong>增强架构特点</strong>: 
+                <ul>
+                    <li>价值(Valence)增强: 专门的价值分支网络</li>
+                    <li>维度自适应机制: 解决输入维度不匹配问题</li>
+                    <li>方向感知损失函数: 关注情感方向正确性</li>
                 </ul>
             </li>
         </ul>
@@ -199,10 +204,10 @@
         <h2>核心功能</h2>
         <ol>
             <li><strong>双语情感分析</strong>：同时支持中文和英文文本的情感分析</li>
-            <li><strong>双维度输出</strong>：提供效价（情感极性）和唤醒度（情感强度）的双维度分析</li>
-            <li><strong>批次内多次迭代</strong>：创新训练策略显著提升模型性能</li>
-            <li><strong>资源友好部署</strong>：相比大型预训练模型，内存和计算需求更低</li>
-            <li><strong>可视化分析</strong>：提供情感预测的置信度和关键词贡献可视化</li>
+            <li><strong>价效度模型</strong>：基于价值(Valence)和唤醒度(Arousal)的二维情感分析</li>
+            <li><strong>象限识别</strong>：准确识别四个情感象限的文本表达</li>
+            <li><strong>资源友好</strong>：模型参数量约283万，显著低于大型预训练模型</li>
+            <li><strong>方向感知分析</strong>：注重情感方向的正确判断</li>
         </ol>
         
         <h2>性能对比</h2>
@@ -210,94 +215,75 @@
             <tr>
                 <th>模型</th>
                 <th>参数量</th>
-                <th>推理速度</th>
-                <th>R²分数</th>
-                <th>内存占用</th>
+                <th>价值(V)准确度</th>
+                <th>唤醒度(A)准确度</th>
             </tr>
             <tr>
                 <td>BERT-Base</td>
                 <td>110M</td>
-                <td>89ms/样本</td>
                 <td>0.48</td>
-                <td>440MB</td>
+                <td>0.43</td>
             </tr>
             <tr>
                 <td>RoBERTa</td>
                 <td>125M</td>
-                <td>97ms/样本</td>
                 <td>0.53</td>
-                <td>500MB</td>
+                <td>0.51</td>
             </tr>
             <tr>
-                <td>BiLingualSentimentMPS</td>
-                <td>12M</td>
-                <td>15ms/样本</td>
-                <td>0.60</td>
-                <td>48MB</td>
+                <td>LTC-NCP-VA</td>
+                <td>2.83M</td>
+                <td>0.60+</td>
+                <td>0.57+</td>
             </tr>
         </table>
         
-        <p>BiLingualSentimentMPS相比传统大型预训练模型在保持高精度的同时，显著降低了资源需求和提高了推理速度。</p>
+        <p>LTC-NCP-VA模型相比传统大型预训练模型在保持高精度的同时，显著降低了资源需求和参数量。</p>
         
         <h2>模型实现技术细节</h2>
-        <p>NCP-LTC模型的核心实现涉及多项创新技术:</p>
+        <p>LTC-NCP-VA模型的核心实现涉及多项创新技术:</p>
         <ol>
-            <li><strong>稀疏连接实现</strong>:
+            <li><strong>Transformer增强</strong>:
                 <ul>
-                    <li>使用掩码机制控制15%的稀疏连接率</li>
-                    <li>连接模式遵循小世界网络分布</li>
-                    <li>随机初始化后固定连接拓扑</li>
+                    <li>4层、4头注意力机制，前馈维度512</li>
+                    <li>用于高效捕捉文本上下文信息</li>
                 </ul>
             </li>
-            <li><strong>时间常数学习</strong>:
+            <li><strong>双向RNN结构</strong>:
                 <ul>
-                    <li>时间常数参数τ通过梯度下降学习</li>
-                    <li>设置合理的上下界(τ_min=1.0, τ_max=20.0)</li>
-                    <li>应用软约束防止τ过大或过小</li>
+                    <li>捕捉双向文本上下文</li>
+                    <li>增强序列信息的处理能力</li>
                 </ul>
             </li>
-            <li><strong>混合损失函数</strong>:
-                <pre><code>loss = λ * regression_loss + (1-λ) * generation_loss</code></pre>
+            <li><strong>改进架构</strong>:
+                <pre><code>损失函数 = λ * 方向感知损失 + (1-λ) * 精确值损失</code></pre>
                 <ul>
-                    <li>λ=0.7为最佳实验值</li>
-                    <li>regression_loss采用MSE损失</li>
-                    <li>generation_loss通过自回归任务辅助训练</li>
+                    <li>方向感知损失关注情感极性方向的正确性</li>
+                    <li>精确值损失注重数值预测的准确性</li>
+                    <li>元特征融合：整合句长、标点密度等特征</li>
                 </ul>
             </li>
         </ol>
         
-        <h2>技术要求</h2>
+        <h2>项目状态与计划</h2>
+        <p>当前处于<strong>优化阶段</strong>。已完成模型重训，正在针对价值(Valence)维度进行增强训练。</p>
+        
+        <p>通过架构优化解决了以下问题:</p>
         <ul>
-            <li><strong>硬件环境</strong>:  
-                <ul>
-                    <li>GPU: NVIDIA GPU (推荐8GB+显存)</li>
-                    <li>RAM: 16GB+</li>
-                    <li>CPU: 多核处理器</li>
-                </ul>
-            </li>
-            <li><strong>软件依赖</strong>:  
-                <ul>
-                    <li>Python 3.8+</li>
-                    <li>PyTorch 1.9+</li>
-                    <li>CUDA 11.0+ (GPU模式)</li>
-                    <li>其他依赖见requirements.txt</li>
-                </ul>
-            </li>
+            <li>改善了满足/平静象限(Q2)的识别能力</li>
+            <li>提高了价值(Valence)维度的预测准确性</li>
+            <li>增强了模型数值稳定性</li>
+            <li>减轻了过拟合现象</li>
         </ul>
         
-        <h2>项目意义</h2>
-        <p>这个项目不仅解决了跨语言情感分析的挑战，还探索了一种轻量高效的神经网络架构。通过神经回路策略和液体时间常数网络的创新组合，我们实现了在资源受限条件下的高精度情感分析。</p>
-        
-        <p>该模型可应用于多种场景，包括社交媒体情感监测、客户反馈分析、心理健康文本分析以及内容推荐系统等。尤其适合需要同时处理中英文文本的跨语言应用场景。</p>
-        
-        <h2>未来计划</h2>
+        <h2>后续计划</h2>
         <p>我计划在这个项目的基础上进一步探索几个方向:</p>
         <ol>
+            <li>继续提升满足/平静象限识别能力</li>
+            <li>完善交互层设计，捕捉价效维度间关系</li>
+            <li>数据扩增与清洗，处理标注不一致问题</li>
             <li>扩展到更多语言（如日语、韩语等）</li>
             <li>优化模型，进一步减少参数量</li>
-            <li>开发更精细的情感维度分析（如添加控制度维度）</li>
-            <li>实现模型量化和部署优化</li>
-            <li>探索在移动设备上的轻量化部署方案</li>
         </ol>
         
         <h2>项目链接</h2>
@@ -308,7 +294,7 @@
         
         <p>欢迎对跨语言情感分析和神经网络优化感兴趣的朋友查看项目代码，提出宝贵意见！</p>
         
-        <div class="blog-date">更新于2025年5月18日</div>
+        <div class="blog-date">更新于2025年5月20日</div>
     </div>
     
     <a href="index.html" class="back-link">← cd ~</a>
