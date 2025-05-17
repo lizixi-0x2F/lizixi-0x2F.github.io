@@ -107,38 +107,39 @@
             <div class="publication-authors"><strong>李籽溪</strong></div>
             <div class="publication-venue"><em>自然语言处理项目</em>，2025-05-14</div>
             <div class="publication-links">
-                <a href="https://github.com/lizixi-0x2F/BiLingualSentimentMPS">代码</a>
+                <a href="https://github.com/lizixi-0x2F/BiLingualSentimentMPS">代码</a> | 
+                <a href="bilingual-sentiment.html">博客</a>
             </div>
         </div>
         <div class="publication-abstract">
-            <strong>摘要：</strong> 该项目使用MacBERT模型（哈工大讯飞联合实验室开发）微调一个同时支持中英文的情感分析模型，能够分析文本并输出唤起度(Arousal)和价效度(Valence)值。项目针对Apple Silicon芯片提供MPS加速支持。
+            <strong>摘要：</strong> 该项目突破了传统情感分析的语言限制，同时支持中文和英文的情感极性（效价）和情感强度（唤醒度）分析，通过NCP-LTC创新架构提高预测精度，R²分数可达0.6+。
         </div>
         
         <div class="publication-abstract">
             <strong>主要功能：</strong>
             <ul>
-                <li><strong>双语支持</strong>：使用单一模型同时支持中英文</li>
-                <li><strong>硬件加速</strong>：支持Apple Silicon芯片的MPS加速</li>
-                <li><strong>情感分析</strong>：输出文本的价效度和唤起度</li>
-                <li><strong>高效训练</strong>：针对资源有限环境的优化训练流程</li>
-                <li><strong>易于部署</strong>：支持转换为CoreML格式在iOS/macOS设备上使用</li>
+                <li><strong>双语支持</strong>：同时支持中文和英文情感分析</li>
+                <li><strong>双维度输出</strong>：提供效价（情感极性）和唤醒度（情感强度）的双维度分析</li>
+                <li><strong>高效训练</strong>：支持批次内多次迭代，显著提升模型性能</li>
+                <li><strong>资源友好</strong>：相比大型预训练模型，内存和计算需求更低</li>
+                <li><strong>可视化分析</strong>：提供情感预测的置信度和关键词贡献可视化</li>
             </ul>
         </div>
         
         <div class="publication-abstract">
             <strong>技术实现：</strong>
             <ul>
-                <li><strong>模型架构</strong>：基于MacBERT的双语情感分析模型</li>
-                <li><strong>训练数据</strong>：英文EmoBank数据集与中文诗词情感数据集</li>
-                <li><strong>硬件加速</strong>：CUDA (NVIDIA GPU)、MPS (Apple Silicon)、CPU支持</li>
-                <li><strong>优化技术</strong>：梯度累积减少内存占用、批处理大小优化</li>
-                <li><strong>评估指标</strong>：价效度和唤起度的MSE损失、R²相关系数</li>
+                <li><strong>神经回路策略(NCP)</strong>：15%稀疏连接，模拟生物神经网络结构</li>
+                <li><strong>液体时间常数网络(LTC)</strong>：可学习的时间常数(τ)，适应不同的时间尺度</li>
+                <li><strong>混合训练策略</strong>：λ权重控制回归损失与生成损失的比例</li>
+                <li><strong>训练数据</strong>：中文VA数据集与EmoBank英文数据集</li>
+                <li><strong>评估指标</strong>：R²分数、RMSE、CCC一致性相关系数</li>
             </ul>
         </div>
         
         <div class="publication-abstract">
             <strong>项目亮点：</strong>
-            <p>项目创新性地结合中英文情感分析能力于单一模型，并针对Apple Silicon芯片进行了专门优化，大幅提升了在Mac设备上的训练和推理速度。通过使用价效度-唤起度二维情感模型，能够更全面地捕捉文本情感的细微差别，而不仅仅是简单的情感极性判断。</p>
+            <p>该项目不仅解决了跨语言情感分析的挑战，还探索了一种轻量高效的神经网络架构。通过神经回路策略和液体时间常数网络的创新组合，实现了在资源受限条件下的高精度情感分析。模型在中英文情感分析任务上表现出色，且保持了跨语言的一致性，同时计算资源需求显著低于大型预训练模型。</p>
         </div>
     </div>
     
@@ -191,7 +192,7 @@
             <div class="publication-venue"><em>个人项目</em>，2025-05-01</div>
             <div class="publication-links">
                 <a href="https://github.com/lizixi-0x2F/LNNStackVM">代码</a> | 
-                <a href="https://github.com/lizixi-0x2F/LNNStackVM">演示</a>
+                <a href="blog-post.html">博客</a>
             </div>
         </div>
         <div class="publication-abstract">
