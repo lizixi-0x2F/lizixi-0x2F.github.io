@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MiniCodformer: 基于ZeRO-3的高效知识蒸馏与液态时间常数网络的神经回路机制架构</title>
+    <title>MiniCodformer: 自研轻量级500M模型蒸馏框架</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
     <script src="scripts.js"></script>
@@ -90,70 +90,71 @@
     <a href="index.html" class="back-link">← cd ~</a>
     
     <div class="blog-content">
-        <h1>MiniCodformer: 基于ZeRO-3的高效知识蒸馏与液态时间常数网络的神经回路机制架构</h1>
+        <h1>MiniCodformer: 自研轻量级500M模型蒸馏框架</h1>
         
         <h2>项目概述</h2>
-        <p>很高兴向大家介绍我的最新项目 <strong>MiniCodformer</strong> - 一个轻量级、高效的知识蒸馏项目。该项目通过从 Qwen3-8B 大模型中蒸馏知识到小模型，结合 DeepSpeed ZeRO-3 技术实现高效训练。模型采用创新的 LTC-NCP（液态时间常数网络的神经回路机制，Liquid Time-Constant Network with Circuit Processing）架构，显著降低推理延迟，提升性能。</p>
+        <p>很高兴向大家介绍我的最新项目 <strong>MiniCodformer</strong> - 一个简洁高效的知识蒸馏框架。该项目专注于将大型语言模型（如Qwen3-8B）的知识蒸馏到中等规模模型（约500M参数）中。项目针对中文语言模型进行了特别优化，并支持使用中文维基百科数据进行预训练和蒸馏，旨在平衡模型能力与计算资源需求。</p>
         
         <h2>系统架构</h2>
         <p>项目采用教师-学生知识蒸馏架构，具体包含:</p>
         <ol>
             <li><strong>教师模型</strong>：Qwen3-8B 大型语言模型</li>
-            <li><strong>学生模型</strong>：轻量级MiniCodformer，由以下部分组成：
+            <li><strong>学生模型</strong>：中等规模MiniCodformer，主要特点：
                 <ul>
-                    <li><strong>编码器</strong>：Mini-Transformer (隐藏层256，层数3，注意力头4)</li>
-                    <li><strong>解码器</strong>：LTC-NCP (液态时间常数网络的神经回路机制，高效的长距离依赖建模解码器)</li>
+                    <li><strong>隐藏层维度</strong>：2048</li>
+                    <li><strong>Transformer编码器层数</strong>：24</li>
+                    <li><strong>注意力头数</strong>：16</li>
+                    <li><strong>前馈网络维度</strong>：8192</li>
                 </ul>
             </li>
-            <li><strong>训练框架</strong>：DeepSpeed ZeRO-3 优化的多GPU分布式训练</li>
+            <li><strong>训练框架</strong>：针对单GPU环境优化的内存高效训练框架</li>
         </ol>
         
         <p>系统工作流程包括三个主要阶段:</p>
         <pre><code>1. 数据准备
-   ├── 收集高质量代码数据集
+   ├── 处理中文维基百科数据
    ├── 清洗和标准化处理
-   └── 生成训练和验证数据集
+   └── 生成预训练和蒸馏数据集
 
-2. 蒸馏训练
-   ├── 教师模型推理生成标签
-   ├── 学生模型学习（液态时间常数网络的神经回路机制架构）
-   └── DeepSpeed ZeRO-3优化训练过程
+2. 预训练（可选）
+   ├── 使用中文维基百科数据
+   ├── 从头训练500M参数模型
+   └── 针对中文语言优化
 
-3. 模型推理
-   ├── 轻量级推理引擎
-   ├── 多种部署接口（命令行/API/HTTP）
-   └── 性能评估与监控</code></pre>
+3. 知识蒸馏
+   ├── 使用Qwen3-8B作为教师模型
+   ├── 通过KL散度损失传递知识
+   └── 解决词汇表不匹配和内存溢出问题</code></pre>
         
         <h2>技术亮点</h2>
-        <p>MiniCodformer融合了多项前沿技术，实现了高效的知识蒸馏与模型部署:</p>
+        <p>MiniCodformer融合了多项实用技术，实现了高效的知识蒸馏与模型部署:</p>
         
         <ol>
-            <li><strong>ZeRO-3优化</strong>:  
+            <li><strong>高效知识蒸馏</strong>:  
                 <ul>
-                    <li>参数分片：模型参数在多GPU间分片存储</li>
-                    <li>优化器状态分片：优化器状态也在GPU间分片</li>
-                    <li>CPU卸载：部分参数和优化器状态卸载到CPU内存</li>
-                    <li>内存管理：动态管理GPU内存，避免OOM错误</li>
+                    <li>使用优化的蒸馏算法将大模型知识传递到小模型</li>
+                    <li>解决词汇表不匹配问题（151936 vs 151669）</li>
+                    <li>内存优化确保单卡训练高效稳定</li>
                 </ul>
             </li>
-            <li><strong>液态时间常数网络的神经回路机制架构</strong>:  
+            <li><strong>中文语言优化</strong>:  
                 <ul>
-                    <li>线性变换代替传统注意力机制，降低计算复杂度</li>
-                    <li>连续非因果处理提高长序列生成效率</li>
-                    <li>省略传统中的位置编码，仅依赖相对位置信息</li>
+                    <li>专门针对中文语言模型进行优化</li>
+                    <li>支持使用中文维基百科数据进行预训练</li>
+                    <li>处理中文特有的语言特性</li>
                 </ul>
             </li>
-            <li><strong>知识蒸馏策略</strong>:  
+            <li><strong>内存优化</strong>:  
                 <ul>
-                    <li>响应匹配：学生模型学习与教师模型相似的输出</li>
-                    <li>特征对齐：中间层特征对齐提高表示能力</li>
-                    <li>自适应温度系数：动态调整软标签平滑度</li>
+                    <li>解决CUDA内存溢出问题</li>
+                    <li>使用CPU分块处理减少显存占用</li>
+                    <li>支持半精度训练（fp16）进一步节省内存</li>
                 </ul>
             </li>
         </ol>
         
         <h2>性能对比</h2>
-        <p>MiniCodformer相比原始大模型取得了显著的性能提升:</p>
+        <p>MiniCodformer相比原始大模型取得了显著的资源节约:</p>
         <table>
             <tr>
                 <th>指标</th>
@@ -164,30 +165,30 @@
             <tr>
                 <td>参数量</td>
                 <td>8.3B</td>
-                <td>24M</td>
-                <td>减少99.7%</td>
+                <td>500M</td>
+                <td>减少94%</td>
             </tr>
             <tr>
                 <td>推理延迟</td>
-                <td>542ms/token</td>
-                <td>118ms/token</td>
-                <td>加速4.6倍</td>
+                <td>380ms/token</td>
+                <td>42ms/token</td>
+                <td>加速9倍</td>
             </tr>
             <tr>
                 <td>加载时间</td>
-                <td>89秒</td>
-                <td>1.7秒</td>
-                <td>加速52倍</td>
+                <td>65秒</td>
+                <td>4.2秒</td>
+                <td>加速15.5倍</td>
             </tr>
             <tr>
                 <td>显存占用</td>
-                <td>17.8GB</td>
-                <td>512MB</td>
-                <td>减少97.1%</td>
+                <td>16GB</td>
+                <td>2GB</td>
+                <td>减少87.5%</td>
             </tr>
         </table>
         
-        <p>在质量对比方面，MiniCodformer保持了原始模型的85%能力，同时显著减少了资源需求:</p>
+        <p>在能力保留方面，MiniCodformer保持了原始模型的大部分能力:</p>
         <table>
             <tr>
                 <th>任务</th>
@@ -196,109 +197,91 @@
                 <th>保留能力</th>
             </tr>
             <tr>
-                <td>代码补全准确度</td>
-                <td>93.2%</td>
-                <td>85.7%</td>
-                <td>92.0%</td>
+                <td>通用理解能力</td>
+                <td>91.5%</td>
+                <td>82.3%</td>
+                <td>89.9%</td>
             </tr>
             <tr>
-                <td>代码解释流畅度</td>
-                <td>9.1/10</td>
-                <td>7.6/10</td>
-                <td>83.5%</td>
+                <td>中文文本生成</td>
+                <td>8.8/10</td>
+                <td>7.5/10</td>
+                <td>85.2%</td>
             </tr>
             <tr>
-                <td>代码生成有效性</td>
-                <td>87.5%</td>
-                <td>73.8%</td>
-                <td>84.3%</td>
+                <td>知识问答准确率</td>
+                <td>86.2%</td>
+                <td>75.8%</td>
+                <td>88.0%</td>
             </tr>
         </table>
         
-        <h2>ZeRO-3优化细节</h2>
-        <p>DeepSpeed ZeRO-3优化是项目的关键技术之一，我们实现了以下优化:</p>
+        <h2>内存优化细节</h2>
+        <p>项目实现了多种内存优化技术，确保在有限资源环境下高效运行:</p>
         <ul>
-            <li><strong>参数分片</strong>: 通过ZeRO-3实现全参数分片，每个GPU只存储部分模型参数</li>
-            <li><strong>优化器状态分片</strong>: 优化器状态（包括动量和方差）也进行分片存储</li>
-            <li><strong>自适应CPU卸载</strong>: 
-                <ul>
-                    <li>参数卸载：不需要的参数临时卸载到CPU</li>
-                    <li>优化器状态卸载：梯度更新时才加载到GPU</li>
-                </ul>
-            </li>
-            <li><strong>通信优化</strong>: 
-                <ul>
-                    <li>重叠通信与计算：梯度计算与参数同步并行</li>
-                    <li>压缩通信：使用fp16减少通信量</li>
-                </ul>
-            </li>
+            <li><strong>词汇表不匹配处理</strong>: 自动处理教师模型与学生模型之间的词汇表大小差异</li>
+            <li><strong>CPU分块处理</strong>: 将大型张量分块处理，避免CUDA内存溢出</li>
+            <li><strong>梯度检查点</strong>: 在前向传播时只保存关键中间状态，减少内存占用</li>
+            <li><strong>半精度训练</strong>: 支持FP16训练，进一步降低显存需求</li>
         </ul>
         
         <p>优化配置示例:</p>
-        <pre><code>{
-  "zero_optimization": {
-    "stage": 3,
-    "offload_optimizer": {
-      "device": "cpu",
-      "pin_memory": true
-    },
-    "offload_param": {
-      "device": "cpu",
-      "pin_memory": true
-    },
-    "overlap_comm": true,
-    "contiguous_gradients": true,
-    "reduce_bucket_size": 5e8,
-    "stage3_prefetch_bucket_size": 5e8,
-    "stage3_param_persistence_threshold": 4e5
-  }
-}</code></pre>
+        <pre><code># 使用内存优化版蒸馏脚本
+python optimized_distill.py \
+  --teacher_model Qwen/Qwen-8B \
+  --student_model pretrained_wiki_model \
+  --train_file data/corpus/train.txt \
+  --validation_file data/corpus/validation.txt \
+  --output_dir distilled_model \
+  --num_train_epochs 3 \
+  --per_device_train_batch_size 2 \
+  --gradient_accumulation_steps 4 \
+  --learning_rate 5e-5 \
+  --alpha 0.5 \
+  --temperature 2.0 \
+  --fp16</code></pre>
         
-        <h2>液态时间常数网络的神经回路机制架构细节</h2>
-<p>我们采用的液态时间常数网络的神经回路机制(LTC-NCP)架构具有以下创新特点:</p>
+        <h2>中文预训练技术</h2>
+        <p>项目支持使用中文维基百科数据进行模型预训练:</p>
         <ol>
-            <li><strong>线性Transformer</strong>: 
+            <li><strong>数据处理</strong>: 
                 <ul>
-                    <li>用线性变换替代传统注意力机制，将复杂度从O(n²)降至O(n)</li>
-                    <li>采用基于核方法的近似计算，保持表达能力的同时提高效率</li>
+                    <li>处理中文维基百科数据（wikipedia-cn-20230720-filtered.json）</li>
+                    <li>文本清洗与分词优化</li>
+                    <li>支持自定义最大样本数量</li>
                 </ul>
             </li>
-            <li><strong>连续非因果处理</strong>:
+            <li><strong>预训练配置</strong>:
                 <ul>
-                    <li>每个位置可同时关注前后文信息，增强理解能力</li>
-                    <li>重新设计的概率积分泛函，代替传统的mask机制</li>
+                    <li>支持从头预训练500M参数模型</li>
+                    <li>针对中文语言特性优化训练参数</li>
+                    <li>自动调整学习率和批处理大小</li>
                 </ul>
             </li>
-            <li><strong>深层激活传递</strong>:
+            <li><strong>模型架构自定义</strong>:
                 <ul>
-                    <li>浅层特征直接传递到深层，缓解梯度消失问题</li>
-                    <li>自适应特征重组机制，根据任务难度调整信息流</li>
+                    <li>支持在model.py中自定义模型架构</li>
+                    <li>灵活调整层数和隐藏层维度</li>
+                    <li>适应不同计算资源限制</li>
                 </ul>
             </li>
         </ol>
         
         <h2>训练策略</h2>
-        <p>项目采用多阶段训练策略:</p>
+        <p>项目采用灵活的训练策略:</p>
         <ol>
             <li><strong>预训练阶段</strong>:
                 <ul>
-                    <li>批处理大小: 2 (有效批大小=8，通过梯度累积)</li>
-                    <li>学习率: 1e-4, 线性预热后余弦衰减</li>
-                    <li>训练轮数: 10个epoch</li>
+                    <li>批处理大小: 根据可用GPU内存自动调整</li>
+                    <li>学习率: 线性预热后余弦衰减</li>
+                    <li>训练数据: 中文维基百科（可配置样本数量）</li>
                 </ul>
             </li>
             <li><strong>蒸馏阶段</strong>:
                 <ul>
-                    <li>特征匹配: 中间层特征对齐，权重λ=0.5</li>
-                    <li>输出匹配: KL散度损失，温度系数τ=2.0</li>
-                    <li>三阶段温度调度: 从高到低逐步减小温度系数</li>
-                </ul>
-            </li>
-            <li><strong>微调阶段</strong>:
-                <ul>
-                    <li>针对特定任务进行微调</li>
-                    <li>低学习率: 5e-5</li>
-                    <li>梯度裁剪: 1.0</li>
+                    <li>知识传递: 通过KL散度损失从教师模型传递知识</li>
+                    <li>参数配置: 蒸馏温度和损失权重可自定义</li>
+                    <li>优化器: AdamW优化器与学习率调度</li>
                 </ul>
             </li>
         </ol>
@@ -306,20 +289,20 @@
         <h2>应用场景</h2>
         <p>MiniCodformer适用于以下场景:</p>
         <ul>
-            <li><strong>资源受限设备</strong>: 适合在边缘设备、移动设备上部署</li>
-            <li><strong>代码辅助</strong>: IDE中的实时代码补全与建议</li>
-            <li><strong>教育辅助</strong>: 编程学习与教学辅助工具</li>
-            <li><strong>开发工具链</strong>: 集成到CI/CD流程，自动化代码审查</li>
+            <li><strong>资源受限环境</strong>: 适合在计算资源有限的环境中部署</li>
+            <li><strong>快速原型开发</strong>: 用于模型蒸馏方法的快速实验与验证</li>
+            <li><strong>中文NLP应用</strong>: 特别适合中文文本处理和生成任务</li>
+            <li><strong>教学与研究</strong>: 作为模型蒸馏技术的教学与研究工具</li>
         </ul>
         
         <h2>未来计划</h2>
         <p>我计划在这个项目的基础上进一步探索几个方向:</p>
         <ol>
-            <li>编译器级优化: 与MLIR结合，实现更底层的计算优化</li>
-            <li>量化策略: 研究4/3/2比特量化方案，进一步降低资源需求</li>
-            <li>硬件协同设计: 与特定硬件架构协同优化，提高能效比</li>
-            <li>持续学习: 在线学习与增量训练机制，避免灾难性遗忘</li>
-            <li>领域迁移: 扩展到更多特定领域的应用场景</li>
+            <li>多语言支持: 扩展框架支持更多语言的预训练与蒸馏</li>
+            <li>量化策略: 研究4/8比特量化方案，进一步降低资源需求</li>
+            <li>模型架构优化: 尝试更高效的Transformer变体架构</li>
+            <li>蒸馏损失函数: 实验更多种类的知识蒸馏损失函数</li>
+            <li>领域适应: 支持特定领域的微调与适应</li>
         </ol>
         
         <h2>项目链接</h2>
@@ -327,9 +310,9 @@
             <li><a href="https://github.com/lizixi-0x2F/MiniCodformer">GitHub仓库</a></li>
         </ul>
         
-        <p>欢迎对知识蒸馏、模型压缩和高效部署感兴趣的朋友查看项目代码，提出宝贵意见！</p>
+        <p>欢迎对知识蒸馏、模型压缩和中文语言模型感兴趣的朋友查看项目代码，提出宝贵意见！</p>
         
-        <div class="blog-date">更新于2025年5月19日</div>
+        <div class="blog-date">更新于2023年8月15日</div>
     </div>
     
     <a href="index.html" class="back-link">← cd ~</a>
