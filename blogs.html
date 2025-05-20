@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李籽溪 - 博客文章</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
+    <script src="scripts.js"></script>
+    <style>
+        .blog-post {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #2c3e50;
+        }
+        
+        .blog-post:last-child {
+            border-bottom: none;
+        }
+        
+        .blog-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #00b894;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .blog-meta {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #74b9ff;
+        }
+        
+        .blog-summary {
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            font-family: 'Fira Code', monospace;
+            color: #0984e3;
+        }
+        
+        .blog-post.hidden-by-tag {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-header">
+        <div class="terminal-buttons">
+            <span class="terminal-btn red"></span>
+            <span class="terminal-btn yellow"></span>
+            <span class="terminal-btn green"></span>
+        </div>
+        <div class="terminal-title">lizixi@sunyatsenuniversity:~/blogs</div>
+    </div>
+    
+    <a href="index.html" class="back-link">← cd ..</a>
+    
+    <h1>$ ls -la ./blogs</h1>
+    
+    <!-- 博客标签列表 -->
+    <div class="tags-container">
+        <h3 class="tags-title">按标签筛选：</h3>
+        <ul class="tags-list">
+            <li class="tag-item active" data-tag="all">全部 <span class="tag-count">(3)</span></li>
+            <li class="tag-item" data-tag="tech">技术文章 <span class="tag-count">(3)</span></li>
+            <li class="tag-item" data-tag="ai">人工智能 <span class="tag-count">(3)</span></li>
+            <li class="tag-item" data-tag="nlp">自然语言处理 <span class="tag-count">(2)</span></li>
+            <li class="tag-item" data-tag="neural-network">神经网络 <span class="tag-count">(2)</span></li>
+            <li class="tag-item" data-tag="model-compression">模型压缩 <span class="tag-count">(1)</span></li>
+            <li class="tag-item" data-tag="sentiment-analysis">情感分析 <span class="tag-count">(1)</span></li>
+        </ul>
+    </div>
+    
+    <div class="blog-post" data-tags="tech,ai,model-compression,nlp">
+        <div class="blog-title">>_ MiniCodformer: 自研轻量级500M模型蒸馏框架</div>
+        <div class="blog-meta">发布于 2023-08-15 | 技术文章</div>
+        <div class="blog-summary">
+            该项目提供了一个简洁高效的知识蒸馏框架，专注于将大型语言模型（如Qwen3-8B）的知识蒸馏到中等规模模型(约500M参数)中。项目针对中文语言模型进行了特别优化，并支持使用中文维基百科数据进行预训练和蒸馏。主要技术特点包括高效知识蒸馏、词汇表不匹配处理和内存优化，使模型可以在单GPU环境下高效训练。
+        </div>
+        <div class="project-links">
+            <a href="minicodformer.html">阅读全文</a>
+        </div>
+    </div>
+    
+    <div class="blog-post" data-tags="tech,ai,nlp,sentiment-analysis">
+        <div class="blog-title">>_ LTC-NCP-VA: 基于液态时间常数网络的神经回路机制的情感分析</div>
+        <div class="blog-meta">发布于 2025-05-18 | 技术文章</div>
+        <div class="blog-summary">
+            该项目基于液态时间常数网络的神经回路机制(LTC-NCP)的情感价效度(VA)分析架构，同时支持中文和英文的情感价值(Valence)和唤醒度(Arousal)分析。通过创新架构改善了满足/平静象限的识别能力，模型参数量约283万，显著低于大型预训练模型。
+        </div>
+        <div class="project-links">
+            <a href="bilingual-sentiment.html">阅读全文</a>
+        </div>
+    </div>
+    
+    <div class="blog-post" data-tags="tech,ai,neural-network">
+        <div class="blog-title">>_ LNNStackVM: 基于栈虚拟机的神经网络</div>
+        <div class="blog-meta">发布于 2025-05-10 | 技术文章</div>
+        <div class="blog-summary">
+            本项目使用PyTorch实现了一个液态时间常数(LTC)神经网络，用于近似函数sin(x) + 0.5*sin(3x)。训练好的模型被转换为字节码并在基于栈的虚拟机(VM)上执行。项目包括一个用于加速推理的基于C语言的高性能VM，展示了神经网络训练、基于ODE的建模和轻量级VM推理。
+        </div>
+        <div class="project-links">
+            <a href="blog-post.html">阅读全文</a>
+        </div>
+    </div>
+    
+    <a href="index.html" class="back-link">← cd ..</a>
+    
+    <div class="terminal-footer">
+        <p class="typing-effect">$ cat ./blogs/README.md</p>
+    </div>
+</body>
+</html> 

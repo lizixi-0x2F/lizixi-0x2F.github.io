@@ -22,11 +22,13 @@ function toggleBlock(id) {
  * @param {string} tag - 需要过滤的标签
  */
 function filterByTag(tag) {
-    // 获取所有标签和项目
+    // 获取所有标签和项目/博客
     const tagItems = document.querySelectorAll('.tag-item');
     const projects = document.querySelectorAll('.project');
+    const blogPosts = document.querySelectorAll('.blog-post');
+    const items = [...projects, ...blogPosts]; // 合并项目和博客数组
     
-    // 如果点击的是"全部"标签或者再次点击当前激活的标签，则显示所有项目
+    // 如果点击的是"全部"标签或者再次点击当前激活的标签，则显示所有项目/博客
     const clickedTag = event.target;
     const isAllTag = tag === 'all';
     const isActiveTag = clickedTag.classList.contains('active');
@@ -40,9 +42,9 @@ function filterByTag(tag) {
             document.querySelector('.tag-item[data-tag="all"]').classList.add('active');
         }
         
-        // 显示所有项目
-        projects.forEach(project => project.classList.remove('hidden-by-tag'));
-        console.log('%c[TAGS] 显示所有项目', 'color: #0984e3');
+        // 显示所有项目/博客
+        items.forEach(item => item.classList.remove('hidden-by-tag'));
+        console.log('%c[TAGS] 显示所有项目/博客', 'color: #0984e3');
         return;
     }
     
@@ -50,13 +52,13 @@ function filterByTag(tag) {
     tagItems.forEach(item => item.classList.remove('active'));
     clickedTag.classList.add('active');
     
-    // 过滤项目
-    projects.forEach(project => {
-        const projectTags = project.getAttribute('data-tags').split(',');
-        if (projectTags.includes(tag)) {
-            project.classList.remove('hidden-by-tag');
+    // 过滤项目/博客
+    items.forEach(item => {
+        const itemTags = item.getAttribute('data-tags').split(',');
+        if (itemTags.includes(tag)) {
+            item.classList.remove('hidden-by-tag');
         } else {
-            project.classList.add('hidden-by-tag');
+            item.classList.add('hidden-by-tag');
         }
     });
     
