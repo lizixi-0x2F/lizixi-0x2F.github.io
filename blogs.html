@@ -43,10 +43,6 @@
             font-family: 'Fira Code', monospace;
             color: #0984e3;
         }
-        
-        .blog-post.hidden-by-tag {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -63,21 +59,7 @@
     
     <h1>$ ls -la ./blogs</h1>
     
-    <!-- 博客标签列表 -->
-    <div class="tags-container">
-        <h3 class="tags-title">按标签筛选：</h3>
-        <ul class="tags-list">
-            <li class="tag-item active" data-tag="all">全部 <span class="tag-count">(3)</span></li>
-            <li class="tag-item" data-tag="tech">技术文章 <span class="tag-count">(3)</span></li>
-            <li class="tag-item" data-tag="ai">人工智能 <span class="tag-count">(3)</span></li>
-            <li class="tag-item" data-tag="nlp">自然语言处理 <span class="tag-count">(2)</span></li>
-            <li class="tag-item" data-tag="neural-network">神经网络 <span class="tag-count">(2)</span></li>
-            <li class="tag-item" data-tag="model-compression">模型压缩 <span class="tag-count">(1)</span></li>
-            <li class="tag-item" data-tag="sentiment-analysis">情感分析 <span class="tag-count">(1)</span></li>
-        </ul>
-    </div>
-    
-    <div class="blog-post" data-tags="tech,ai,model-compression,nlp">
+    <div class="blog-post">
         <div class="blog-title">>_ MiniCodformer: 自研轻量级500M模型蒸馏框架</div>
         <div class="blog-meta">发布于 2024-5-19 | 技术文章</div>
         <div class="blog-summary">
@@ -88,7 +70,7 @@
         </div>
     </div>
     
-    <div class="blog-post" data-tags="tech,ai,nlp,sentiment-analysis">
+    <div class="blog-post">
         <div class="blog-title">>_ LTC-NCP-VA: 基于液态时间常数网络的神经回路机制的情感分析</div>
         <div class="blog-meta">发布于 2025-05-18 | 技术文章</div>
         <div class="blog-summary">
@@ -99,7 +81,7 @@
         </div>
     </div>
     
-    <div class="blog-post" data-tags="tech,ai,neural-network">
+    <div class="blog-post">
         <div class="blog-title">>_ LNNStackVM: 基于栈虚拟机的神经网络</div>
         <div class="blog-meta">发布于 2025-05-10 | 技术文章</div>
         <div class="blog-summary">
