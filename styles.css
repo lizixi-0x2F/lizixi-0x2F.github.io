@@ -257,7 +257,7 @@ code {
     flex: 1;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .entry-link:hover {
@@ -265,40 +265,85 @@ code {
 }
 
 .entry-box {
+    display: flex;
+    align-items: center;
     background-color: #1a222a;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 20px;
-    text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     border: 1px solid #2c3e50;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: 80px;
 }
 
 .entry-box:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     border-color: #00b894;
+    background-color: #1e2a35;
 }
 
 .entry-icon {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 2.8rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.entry-box:hover .entry-icon {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.entry-content {
+    flex: 1;
 }
 
 .entry-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #00b894;
     margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.entry-box:hover .entry-title {
+    color: #1dd1a1;
 }
 
 .entry-description {
     font-size: 0.9rem;
     color: #74b9ff;
+    transition: color 0.3s ease;
+}
+
+.entry-box:hover .entry-description {
+    color: #a0d2ff;
+}
+
+.entry-arrow {
+    font-size: 1.5rem;
+    margin-left: 15px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    color: #74b9ff;
+}
+
+.entry-box:hover .entry-arrow {
+    opacity: 1;
+    transform: translateX(5px);
+    color: #00b894;
 }
 
 @media (max-width: 768px) {
     .nav-entries {
         flex-direction: column;
+    }
+    
+    .entry-box {
+        height: auto;
     }
 }
 
