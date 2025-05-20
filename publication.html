@@ -85,6 +85,10 @@
             border-radius: 3px;
             font-family: 'Fira Code', monospace;
         }
+        
+        .publication.hidden-by-tag {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -101,49 +105,64 @@
     
     <h1>$ ls ./projects</h1>
     
-    <div class="publication">
+    <!-- 项目标签列表 -->
+    <div class="tags-container">
+        <h3 class="tags-title">按标签筛选：</h3>
+        <ul class="tags-list">
+            <li class="tag-item active" data-tag="all">全部 <span class="tag-count">(4)</span></li>
+            <li class="tag-item" data-tag="ai">AI/机器学习 <span class="tag-count">(4)</span></li>
+            <li class="tag-item" data-tag="nlp">自然语言处理 <span class="tag-count">(2)</span></li>
+            <li class="tag-item" data-tag="model-compression">模型压缩 <span class="tag-count">(1)</span></li>
+            <li class="tag-item" data-tag="sentiment-analysis">情感分析 <span class="tag-count">(2)</span></li>
+            <li class="tag-item" data-tag="neural-network">神经网络 <span class="tag-count">(2)</span></li>
+            <li class="tag-item" data-tag="chinese">中文处理 <span class="tag-count">(1)</span></li>
+            <li class="tag-item" data-tag="mobile">移动应用 <span class="tag-count">(1)</span></li>
+        </ul>
+    </div>
+    
+    <div class="publication" data-tags="ai,model-compression,nlp,chinese">
         <div class="publication-content">
-            <div class="publication-title">>_ MiniCodformer: 基于ZeRO-3的高效知识蒸馏</div>
+            <div class="publication-title">>_ MiniCodformer: 自研轻量级500M模型蒸馏框架</div>
             <div class="publication-authors"><strong>李籽溪</strong></div>
-            <div class="publication-venue"><em>大模型压缩与优化</em>，2025-05-19</div>
+            <div class="publication-venue"><em>大模型压缩与优化</em>，2023-08-15</div>
             <div class="publication-links">
                 <a href="https://github.com/lizixi-0x2F/MiniCodformer">代码</a> | 
                 <a href="minicodformer.html">博客</a>
             </div>
         </div>
         <div class="publication-abstract">
-            <strong>摘要：</strong> 该项目通过从Qwen3-8B大模型蒸馏知识到轻量级模型，结合DeepSpeed ZeRO-3技术实现高效训练。模型采用创新的LTC-NCP（液态时间常数网络的神经回路机制，Liquid Time-Constant Network with Circuit Processing）架构，显著降低推理延迟，提升性能。
+            <strong>摘要：</strong> 该项目提供了一个简洁高效的知识蒸馏框架，专注于将大型语言模型（如Qwen3-8B）的知识蒸馏到中等规模模型(约500M参数)中。项目针对中文语言模型进行了特别优化，并支持使用中文维基百科数据进行预训练和蒸馏。
         </div>
         
         <div class="publication-abstract">
             <strong>主要特性：</strong>
             <ul>
-                <li><strong>轻量化</strong>：参数量减少99.7%，从8.3B减少到24M</li>
-                <li><strong>高效训练</strong>：DeepSpeed ZeRO-3优化，支持多GPU分布式训练</li>
-                <li><strong>创新架构</strong>：LTC-NCP（液态时间常数网络的神经回路机制）解码器，线性复杂度替代传统注意力机制</li>
-                <li><strong>性能优势</strong>：推理速度提升4.6倍，显存占用减少97.1%</li>
-                <li><strong>保留能力</strong>：保持原始模型85%的能力，适用于代码相关任务</li>
+                <li><strong>轻量化</strong>：参数量从8.3B减少到500M，减少约94%</li>
+                <li><strong>高效训练</strong>：针对单GPU环境优化的内存高效训练框架</li>
+                <li><strong>中文优化</strong>：专门针对中文语言模型进行了特别优化</li>
+                <li><strong>性能优势</strong>：推理速度提升9倍，显存占用减少87.5%</li>
+                <li><strong>保留能力</strong>：保持原始模型大部分能力，适用于通用NLP任务</li>
             </ul>
         </div>
         
         <div class="publication-abstract">
             <strong>技术实现：</strong>
             <ul>
-                <li><strong>知识蒸馏策略</strong>：特征匹配、输出匹配、自适应温度系数调度</li>
-                <li><strong>线性Transformer</strong>：用线性变换替代传统注意力机制</li>
-                <li><strong>连续非因果处理</strong>：每个位置可同时关注前后文信息</li>
-                <li><strong>ZeRO-3优化</strong>：参数分片、优化器状态分片、CPU卸载、通信优化</li>
-                <li><strong>多阶段训练</strong>：预训练、蒸馏、微调三阶段处理</li>
+                <li><strong>知识蒸馏策略</strong>：通过KL散度损失从教师模型传递知识</li>
+                <li><strong>中文预训练</strong>：支持使用中文维基百科数据进行预训练</li>
+                <li><strong>内存优化</strong>：词汇表不匹配处理、CPU分块处理、半精度训练</li>
+                <li><strong>灵活架构</strong>：支持自定义模型架构，适应不同计算资源限制</li>
+                <li><strong>多阶段训练</strong>：预训练、蒸馏两阶段处理</li>
             </ul>
         </div>
         
         <div class="publication-abstract">
             <strong>应用场景：</strong>
-            <p>MiniCodformer适用于资源受限设备上的代码辅助场景，如实时代码补全、代码解释、代码生成等任务。其轻量级设计使其可以在边缘设备、移动设备上高效部署，也可集成到IDE或CI/CD流程中，提供智能代码审查和辅助功能。项目探索了大模型轻量化部署的新路径，对知识蒸馏、模型压缩和高效推理领域有重要参考价值。</p>
+            <p>MiniCodformer适用于计算资源有限的环境，特别适合中文文本处理和生成任务。此外，还可用于模型蒸馏方法的快速实验与验证，以及作为知识蒸馏技术的教学与研究工具。</p>
         </div>
     </div>
     
-    <div class="publication">
+    <div class="publication" data-tags="ai,nlp,sentiment-analysis,neural-network">
         <div class="publication-content">
             <div class="publication-title">>_ BiLingualSentimentMPS: 中英文情感分析模型</div>
             <div class="publication-authors"><strong>李籽溪</strong></div>
@@ -185,7 +204,7 @@
         </div>
     </div>
     
-    <div class="publication">
+    <div class="publication" data-tags="ai,sentiment-analysis,mobile">
         <div class="publication-content">
             <div class="publication-title">>_ MindHub: 心灵情绪日记应用</div>
             <div class="publication-authors"><strong>李籽溪</strong></div>
@@ -227,18 +246,18 @@
         </div>
     </div>
     
-    <div class="publication">
+    <div class="publication" data-tags="ai,neural-network">
         <div class="publication-content">
             <div class="publication-title">>_ LNNStackVM: 基于栈虚拟机的神经网络</div>
             <div class="publication-authors"><strong>李籽溪</strong></div>
             <div class="publication-venue"><em>个人项目</em>，2025-05-01</div>
             <div class="publication-links">
-                <a href="https://github.com/lizixi-0x2F/LNNStackVM">代码</a> | 
-                <a href="blog-post.html">博客</a>
+                <a href="https://github.com/lizixi-0x2F/LNNStackVM">代码</a> |
+                <a href="https://github.com/lizixi-0x2F/LNNStackVM">演示</a>
             </div>
         </div>
         <div class="publication-abstract">
-            <strong>摘要：</strong> 本项目使用PyTorch实现了一个液态时间常数(LTC)神经网络，用于近似函数<code>sin(x) + 0.5*sin(3x)</code>。训练好的模型被转换为字节码并在基于栈的虚拟机(VM)上执行。项目包括一个用于加速推理的基于C语言的高性能VM，展示了神经网络训练、基于ODE的建模和轻量级VM推理。
+            <strong>摘要：</strong> 本项目使用PyTorch实现了一个液态时间常数(LTC)神经网络，用于近似函数sin(x) + 0.5*sin(3x)。训练好的模型被转换为字节码并在基于栈的虚拟机(VM)上执行。项目包括一个用于加速推理的基于C语言的高性能VM，展示了神经网络训练、基于ODE的建模和轻量级VM推理。
         </div>
         
         <div class="publication-abstract">
@@ -264,5 +283,9 @@
     </div>
     
     <a href="index.html" class="back-link">← cd ..</a>
+    
+    <div class="terminal-footer">
+        <p class="typing-effect">$ ls -la ./projects</p>
+    </div>
 </body>
 </html> 

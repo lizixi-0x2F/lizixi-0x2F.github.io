@@ -243,4 +243,60 @@ code {
 @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: #fd79a8 }
+}
+
+/* 标签样式 */
+.tags-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    background-color: #1a222a;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tags-title {
+    color: #fd79a8;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.tag-item {
+    background-color: rgba(9, 132, 227, 0.1);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.9em;
+    color: #74b9ff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag-item:hover {
+    background-color: rgba(9, 132, 227, 0.2);
+    transform: translateY(-2px);
+}
+
+.tag-item.active {
+    background-color: #0984e3;
+    color: #f0f0f0;
+}
+
+.tag-count {
+    margin-left: 5px;
+    color: #a8c6df;
+    font-size: 0.8em;
+}
+
+/* 标签筛选后的项目样式 */
+.project.hidden-by-tag {
+    display: none;
 } 

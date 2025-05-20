@@ -17,6 +17,52 @@ function toggleBlock(id) {
     }
 }
 
+/**
+ * 标签过滤功能
+ * @param {string} tag - 需要过滤的标签
+ */
+function filterByTag(tag) {
+    // 获取所有标签和项目
+    const tagItems = document.querySelectorAll('.tag-item');
+    const projects = document.querySelectorAll('.project');
+    
+    // 如果点击的是"全部"标签或者再次点击当前激活的标签，则显示所有项目
+    const clickedTag = event.target;
+    const isAllTag = tag === 'all';
+    const isActiveTag = clickedTag.classList.contains('active');
+    
+    if (isAllTag || isActiveTag) {
+        // 移除所有标签的active状态
+        tagItems.forEach(item => item.classList.remove('active'));
+        
+        // 如果点击的是"全部"标签，则激活它
+        if (isAllTag) {
+            document.querySelector('.tag-item[data-tag="all"]').classList.add('active');
+        }
+        
+        // 显示所有项目
+        projects.forEach(project => project.classList.remove('hidden-by-tag'));
+        console.log('%c[TAGS] 显示所有项目', 'color: #0984e3');
+        return;
+    }
+    
+    // 切换标签的active状态
+    tagItems.forEach(item => item.classList.remove('active'));
+    clickedTag.classList.add('active');
+    
+    // 过滤项目
+    projects.forEach(project => {
+        const projectTags = project.getAttribute('data-tags').split(',');
+        if (projectTags.includes(tag)) {
+            project.classList.remove('hidden-by-tag');
+        } else {
+            project.classList.add('hidden-by-tag');
+        }
+    });
+    
+    console.log(`%c[TAGS] 过滤标签: ${tag}`, 'color: #0984e3');
+}
+
 // 固定显示单张照片
 const singlePhoto = 'media/images/profile1.jpg';
 
@@ -54,6 +100,15 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             typeEffect(title, originalText, 30);
         }, 500 + Math.random() * 1000);
+    });
+    
+    // 初始化标签点击事件
+    const tagItems = document.querySelectorAll('.tag-item');
+    tagItems.forEach(tag => {
+        tag.addEventListener('click', function() {
+            const tagName = this.getAttribute('data-tag');
+            filterByTag(tagName);
+        });
     });
     
     console.log('%c[SYSTEM] 页面加载完成 | 李籽溪的极客空间', 'color: #fd79a8; font-weight: bold');
