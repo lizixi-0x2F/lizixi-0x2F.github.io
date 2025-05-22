@@ -109,15 +109,59 @@
     <div class="tags-container">
         <h3 class="tags-title">按标签筛选：</h3>
         <ul class="tags-list">
-            <li class="tag-item active" data-tag="all">全部 <span class="tag-count">(4)</span></li>
-            <li class="tag-item" data-tag="ai">AI/机器学习 <span class="tag-count">(4)</span></li>
-            <li class="tag-item" data-tag="nlp">自然语言处理 <span class="tag-count">(2)</span></li>
+            <li class="tag-item active" data-tag="all">全部 <span class="tag-count">(5)</span></li>
+            <li class="tag-item" data-tag="ai">AI/机器学习 <span class="tag-count">(5)</span></li>
+            <li class="tag-item" data-tag="nlp">自然语言处理 <span class="tag-count">(3)</span></li>
             <li class="tag-item" data-tag="model-compression">模型压缩 <span class="tag-count">(1)</span></li>
             <li class="tag-item" data-tag="sentiment-analysis">情感分析 <span class="tag-count">(2)</span></li>
-            <li class="tag-item" data-tag="neural-network">神经网络 <span class="tag-count">(2)</span></li>
+            <li class="tag-item" data-tag="neural-network">神经网络 <span class="tag-count">(3)</span></li>
             <li class="tag-item" data-tag="chinese">中文处理 <span class="tag-count">(1)</span></li>
             <li class="tag-item" data-tag="mobile">移动应用 <span class="tag-count">(1)</span></li>
+            <li class="tag-item" data-tag="cryptography">密码学 <span class="tag-count">(1)</span></li>
+            <li class="tag-item" data-tag="explainable-ai">可解释AI <span class="tag-count">(1)</span></li>
         </ul>
+    </div>
+    
+    <div class="publication" data-tags="ai,neural-network,nlp,cryptography,explainable-ai">
+        <div class="publication-content">
+            <div class="publication-title">>_ Enigma-Net: 基于恩尼格玛密码机的可逆神经网络</div>
+            <div class="publication-authors"><strong>李籽溪</strong></div>
+            <div class="publication-venue"><em>神经网络架构创新</em>，2024-05-25</div>
+            <div class="publication-links">
+                <a href="https://github.com/lizixi-0x2F/Enigma-Net">代码</a> | 
+                <a href="enigma-net.html">博客</a>
+            </div>
+        </div>
+        <div class="publication-abstract">
+            <strong>摘要：</strong> Enigma-Net是一个将经典恩尼格玛密码机的机械原理重构为神经网络架构的创新项目。该项目结合了密码学的可逆变换与现代神经网络的学习能力，探索了一种具有高可解释性和内存效率的序列建模方法。
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>主要特性：</strong>
+            <ul>
+                <li><strong>可解释性</strong>：模型内部操作可被直观理解和分析，逐字符替换路径清晰可循</li>
+                <li><strong>内存效率</strong>：可逆结构带来的内存节省，反向传播无需存储中间激活值</li>
+                <li><strong>参数高效</strong>：模型参数量极小，主要参数仅来自输出层线性变换</li>
+                <li><strong>完美可逆</strong>：核心变换完全可逆，具有信息保全特性</li>
+                <li><strong>独特架构</strong>：结合密码学原理与神经网络，开创序列模型新范式</li>
+            </ul>
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>技术实现：</strong>
+            <ul>
+                <li><strong>Plugboard（插线板）</strong>：实现字母之间的一对一置换</li>
+                <li><strong>Rotor（转轮）</strong>：模拟恩尼格玛的核心转轮机制及状态更新</li>
+                <li><strong>RotorStack（转轮组）</strong>：管理多个转轮的前向和后向信号传递</li>
+                <li><strong>Reflector（反射器）</strong>：提供信号反射功能，确保整体变换可逆性</li>
+                <li><strong>可训练输出层</strong>：将加密输出映射为下一字符的概率分布</li>
+            </ul>
+        </div>
+        
+        <div class="publication-abstract">
+            <strong>应用场景：</strong>
+            <p>Enigma-Net适用于需要高可解释性的序列建模任务，特别是在安全敏感、资源受限的环境中。潜在应用包括可逆数据变换、安全通信、低内存序列处理等。该架构也为神经网络与密码学交叉研究提供了新思路。</p>
+        </div>
     </div>
     
     <div class="publication" data-tags="ai,model-compression,nlp,chinese">
