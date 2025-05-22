@@ -243,7 +243,7 @@ code {
 @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: #fd79a8 }
-}
+} 
 
 /* 导航入口样式 */
 .nav-entries {
