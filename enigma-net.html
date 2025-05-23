@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>揭秘可逆动态置换网络：Enigma 的神奇魔法 - 李籽溪</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
+    <script src="scripts.js"></script>
+    <style>
+        .blog-content {
+            line-height: 1.8;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        
+        .blog-content h1, .blog-content h2, .blog-content h3 {
+            font-family: 'Fira Code', monospace;
+            color: #00b894;
+            margin-top: 30px;
+        }
+        
+        .blog-content h1 {
+            font-size: 1.8em;
+            border-bottom: 2px solid #00b894;
+            padding-bottom: 10px;
+        }
+        
+        .blog-content h2 {
+            font-size: 1.5em;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.3em;
+        }
+        
+        .blog-content p {
+            margin-bottom: 20px;
+        }
+        
+        .blog-content blockquote {
+            background-color: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 10px 20px;
+            margin: 20px 0;
+        }
+        
+        .blog-meta {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #74b9ff;
+        }
+        
+        .blog-content code {
+            background-color: #2d3436;
+            color: #00b894;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .blog-content pre {
+            background-color: #2d3436;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        
+        .blog-content ul, .blog-content ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .blog-content li {
+            margin-bottom: 10px;
+        }
+        
+        .blog-content .math {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            font-family: 'Fira Code', monospace;
+            color: #0984e3;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px dashed #2c3e50;
+            margin: 30px 0;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="terminal-header">
+        <div class="terminal-buttons">
+            <span class="terminal-btn red"></span>
+            <span class="terminal-btn yellow"></span>
+            <span class="terminal-btn green"></span>
+        </div>
+        <div class="terminal-title">lizixi@sunyatsenuniversity:~/blogs/enigma</div>
+    </div>
+    
+    <a href="blogs.html" class="back-link">← cd ../</a>
+    
+    <div class="blog-content">
+        <h1>揭秘可逆动态置换网络：Enigma 的神奇魔法</h1>
+        <div class="blog-meta">
+            <span>作者：李籽溪（以"费曼先生"的口吻）</span> | 
+            <span>发布于：2024-05-20</span> | 
+            <span>标签：神经网络, 可逆计算, 科普</span>
+        </div>
+        
+        <h3>摘要</h3>
+        <p>大家好！我是"费曼先生"。今天我们要一起探索一个听上去很酷的名字：<strong>可逆动态置换网络（Enigma）</strong>。它结合了"密码机"的思路和"神经网络"的威力，具备"洗牌"又能"还原"数据的魔法能力。整个原理不复杂，我们将从生活中的简单例子出发，一步步揭开它的面纱。</p>
+        
+        <hr>
+        
+        <h2>1. 为什么要"可逆"？</h2>
+        <p>想象你有一副扑克牌，把它"洗牌"后，要如何保证以后能按原来的顺序"还原"回来？正确的方法并不是随意乱找，而是记住每一步到底怎么洗：先把红桃和黑桃分成两堆，再……这样才能精准地回到起点。<strong>可逆性</strong>，就是对于任何一次"洗牌"（我们称之为函数 \(f\)），都存在一个"还原"操作 \(f^{-1}\)，满足</p>
+        
+        <div class="math">
+        $$
+        f^{-1}(f(x)) = x.
+        $$
+        </div>
+        
+        <p>在神经网络里，实现这种前向（洗牌）和后向（还原）都精确无误的设计，不仅能减少训练过程中的信息损失，还能大幅降低模型运行时的内存需求——因为不需要存储大量"中间状态"来反向传播。</p>
+        
+        <h2>2. 从恩尼格玛机到神经网络的"转子"</h2>
+        <p>二战时期的恩尼格玛机，就是通过"插线板（Plugboard）"和"转子（Rotor）"不断置换电信号，实现加密与解密的经典机械装置。<strong>Enigma 网络</strong>借鉴了这一思路，把可学习的"插线板"和"转子堆栈"放进神经网络里，让网络自己通过数据来"调转子"，既动态又可微分。</p>
+        
+        <ul>
+            <li><strong>插线板（Plugboard）</strong>：就像把几个字母互相连线，网络中它用一种"索引查表"的方式，把向量各个通道重新打乱。</li>
+            <li><strong>转子堆栈（RotorStack）</strong>：多个可学习的小块，每一次前向计算，都会对数据进行位移式"旋转"和"混合"；反向时，则按照相反顺序、相反旋转角度，精确还原。</li>
+        </ul>
+        
+        <h2>3. 模块化的"可逆耦合块"（RevBlock）</h2>
+        <p>除了"洗牌"，Enigma 还需要在"堆栈"之间加入非线性变换，提升模型表达能力。这就是 <strong>RevBlock（可逆耦合块）</strong> 的任务：</p>
+        
+        <ol>
+            <li><strong>拆分通道</strong>：把输入向量分成两半 \((x_1, x_2)\)。</li>
+            <li><strong>耦合变换</strong>：
+                <div class="math">
+                $$
+                y_1 = x_1 + f(x_2),\quad y_2 = x_2 + g(y_1)
+                $$
+                </div>
+                这里的 \(f\) 和 \(g\) 可以是小型的全连接网络或卷积网络。
+            </li>
+            <li><strong>可逆还原</strong>：只需反方向依次做减法，就能无损还原回 \((x_1, x_2)\)。</li>
+        </ol>
+        
+        <p>这种设计既保留了非线性的表达能力，又保证了严格的可逆性——就像两部拼图，前后拼合都不会丢一块。</p>
+        
+        <h2>4. "镜子"般的反射层（Reflector）</h2>
+        <p>Enigma 机里还有一块"反射盘（Reflector）"，它会把信号再"折回"一次。网络版本中，用 <strong>Householder 反射</strong> 的数学技巧，只需一个向量 \(v\)，就能生成一个对称正交矩阵：</p>
+        
+        <div class="math">
+        $$
+        R = I - 2\,\frac{v\,v^\top}{v^\top v}.
+        $$
+        </div>
+        
+        <p>前向时做一次反射，反向时再做一次，等于回到原点——这一步妙在用最简单的数学公式，实现对称且易于计算的"镜像"效果。</p>
+        
+        <h2>5. 让"洗牌"更柔和：Gumbel–Sinkhorn 软置换</h2>
+        <p>通常置换是"硬"操作：交换位置后就无法微分，难以用梯度下降训练。<strong>Gumbel–Sinkhorn</strong> 算法则提供了一种"软"置换方式：给每一步"洗牌"加一个可调节的"温度"，从"模糊的混合"逐步退火到"精准的置换"，既保留可逆性，又支持端到端训练。</p>
+        
+        <h2>6. 应用与前景</h2>
+        <ul>
+            <li><strong>长序列记忆</strong>：在 Copy-Memory 任务中，Enigma 能高效记住并准确复制上百步之前的信息。</li>
+            <li><strong>流式生成模型</strong>：结合流式（Flow-based）技术，Enigma 既能做概率密度估计，也能生成全新样本。</li>
+            <li><strong>自回归语言模型</strong>：在 GPT 式的文本生成里，用 Enigma 结构可减少显存占用，让手机端实时对话成为可能。</li>
+        </ul>
+        
+        <p>未来，随着更长序列、更多模态数据的涌入，Enigma 这种<strong>"洗一洗、还一还"的可逆神经网络</strong>，或将在高效 AI 推理、隐私保护（本地可逆加密）等方面发挥更多奇妙作用。</p>
+        
+        <h2>结语</h2>
+        <p>同学们，科学的魅力就在于把"复杂"拆成一连串简单步骤：插线板像魔方转面，转子像齿轮来回咬合，耦合块像拼图精心拼接，反射就像面对镜子细细回放。Enigma 项目的成功，让我们见证了"旧时密码机"与"现代神经网络"结合后迸发出的火花——既能精准"洗牌"，也能完美"还原"。希望你们带着好奇，亲手动手实现、运行，去感受那份来自"可逆魔法"背后的优雅！</p>
+    </div>
+    
+    <a href="blogs.html" class="back-link">← cd ../</a>
+    
+    <div class="terminal-footer">
+        <p class="typing-effect">$ cat enigma-network.md | less</p>
+    </div>
+</body>
+</html> 
