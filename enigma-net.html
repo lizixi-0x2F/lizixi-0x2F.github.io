@@ -101,6 +101,26 @@
             border-top: 1px dashed #2c3e50;
             margin: 30px 0;
         }
+        
+        .blog-image {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .full-width-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #2c3e50;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .image-caption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #74b9ff;
+            font-style: italic;
+        }
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -127,6 +147,11 @@
         
         <h3>摘要</h3>
         <p>大家好！我是"费曼先生"。今天我们要一起探索一个听上去很酷的名字：<strong>可逆动态置换网络（Enigma）</strong>。它结合了"密码机"的思路和"神经网络"的威力，具备"洗牌"又能"还原"数据的魔法能力。整个原理不复杂，我们将从生活中的简单例子出发，一步步揭开它的面纱。</p>
+        
+        <div class="blog-image">
+            <img src="media/images/enigma_diagram_en.png" alt="Enigma可逆动态置换网络结构图" class="full-width-img">
+            <p class="image-caption">图1: Enigma网络结构示意图 - 展示了RevBlock耦合块、RotorStack内部结构以及整体前向与反向传播流程</p>
+        </div>
         
         <hr>
         
